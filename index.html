@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Qui lèche ? — Le jeu de table qui déchire</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --yellow:  #FFD93D;
+      --orange:  #FF6B35;
+      --pink:    #FF4D9D;
+      --purple:  #7C3AED;
+      --light:   #FFF8F0;
+      --dark:    #1A1A2E;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--light);
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 40px;
+      background: rgba(255, 248, 240, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 2px solid rgba(0,0,0,0.06);
+    }
+    .nav-logo {
+      font-size: 1.4rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--orange), var(--pink));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 32px;
+    }
+    nav ul a {
+      text-decoration: none;
+      color: var(--dark);
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+    nav ul a:hover { color: var(--orange); }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 140px 24px 80px;
+      background:
+        radial-gradient(ellipse at 10% 20%, #FFD93D44 0%, transparent 50%),
+        radial-gradient(ellipse at 90% 80%, #FF4D9D33 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 50%, #7C3AED22 0%, transparent 70%),
+        var(--light);
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: var(--yellow);
+      color: var(--dark);
+      font-weight: 800;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: 999px;
+      margin-bottom: 24px;
+      border: 2px solid var(--dark);
+    }
+
+    .hero h1 {
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 900;
+      line-height: 1.05;
+      margin-bottom: 24px;
+    }
+    .hero h1 span {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--orange) 0%, var(--pink) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-sub {
+      font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+      font-weight: 600;
+      color: #555;
+      max-width: 560px;
+      margin: 0 auto 40px;
+      line-height: 1.6;
+    }
+
+    .hero-cta {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--orange), var(--pink));
+      color: #fff;
+      font-weight: 800;
+      font-size: 1.1rem;
+      padding: 16px 40px;
+      border-radius: 999px;
+      text-decoration: none;
+      border: 3px solid var(--dark);
+      box-shadow: 4px 4px 0 var(--dark);
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .hero-cta:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 6px 0 var(--dark);
+    }
+
+    .hero-emoji-strip {
+      margin-top: 64px;
+      font-size: 2.8rem;
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .emoji-float {
+      animation: float 3s ease-in-out infinite;
+    }
+    .emoji-float:nth-child(2) { animation-delay: 0.4s; }
+    .emoji-float:nth-child(3) { animation-delay: 0.8s; }
+    .emoji-float:nth-child(4) { animation-delay: 1.2s; }
+    .emoji-float:nth-child(5) { animation-delay: 1.6s; }
+    .emoji-float:nth-child(6) { animation-delay: 2s; }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+
+    /* ─── HOW IT WORKS ─── */
+    .section {
+      padding: 100px 24px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 900;
+      text-align: center;
+      margin-bottom: 16px;
+    }
+    .section-sub {
+      text-align: center;
+      color: #666;
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 60px;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+    }
+    .step-card {
+      background: #fff;
+      border: 3px solid var(--dark);
+      border-radius: 24px;
+      padding: 32px 24px;
+      text-align: center;
+      box-shadow: 5px 5px 0 var(--dark);
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .step-card:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 8px 8px 0 var(--dark);
+    }
+    .step-card:nth-child(1) { background: #FFF5C2; }
+    .step-card:nth-child(2) { background: #FFE0F0; }
+    .step-card:nth-child(3) { background: #E8F4FF; }
+    .step-card:nth-child(4) { background: #EDE9FF; }
+
+    .step-num {
+      font-size: 2.5rem;
+      margin-bottom: 12px;
+    }
+    .step-card h3 {
+      font-size: 1.1rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+    .step-card p {
+      font-size: 0.9rem;
+      color: #555;
+      line-height: 1.6;
+      font-weight: 600;
+    }
+
+    /* ─── SCREENSHOTS ─── */
+    .screenshots-section {
+      background: var(--dark);
+      padding: 100px 24px;
+    }
+    .screenshots-section .section-title { color: #fff; }
+    .screenshots-section .section-sub { color: #aaa; }
+
+    .screens-grid {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      flex-wrap: wrap;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .screen-mock {
+      width: 200px;
+      height: 400px;
+      background: #2a2a4a;
+      border-radius: 32px;
+      border: 3px solid #ffffff22;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+      transition: transform 0.2s;
+    }
+    .screen-mock:hover { transform: translateY(-8px); }
+    .screen-mock:nth-child(1) { transform: rotate(-3deg); background: linear-gradient(160deg, #FF6B35, #FF4D9D); }
+    .screen-mock:nth-child(1):hover { transform: rotate(-3deg) translateY(-8px); }
+    .screen-mock:nth-child(2) { transform: rotate(1deg); background: linear-gradient(160deg, #7C3AED, #FF4D9D); }
+    .screen-mock:nth-child(2):hover { transform: rotate(1deg) translateY(-8px); }
+    .screen-mock:nth-child(3) { transform: rotate(-1.5deg); background: linear-gradient(160deg, #FFD93D, #FF6B35); }
+    .screen-mock:nth-child(3):hover { transform: rotate(-1.5deg) translateY(-8px); }
+    .screen-mock:nth-child(4) { transform: rotate(2deg); background: linear-gradient(160deg, #00C6FF, #7C3AED); }
+    .screen-mock:nth-child(4):hover { transform: rotate(2deg) translateY(-8px); }
+
+    .screen-mock .screen-label {
+      font-size: 2.5rem;
+    }
+    .screen-mock .screen-text {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      color: rgba(255,255,255,0.9);
+      font-size: 0.85rem;
+      text-align: center;
+      padding: 0 16px;
+    }
+
+    /* ─── MODES ─── */
+    .modes-section {
+      padding: 100px 24px;
+      background: var(--yellow);
+      position: relative;
+    }
+    .modes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .mode-card {
+      background: #fff;
+      border: 3px solid var(--dark);
+      border-radius: 20px;
+      padding: 28px;
+      box-shadow: 5px 5px 0 var(--dark);
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .mode-card:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 7px 7px 0 var(--dark);
+    }
+    .mode-emoji { font-size: 2rem; margin-bottom: 10px; }
+    .mode-card h3 { font-size: 1.2rem; font-weight: 900; margin-bottom: 6px; }
+    .mode-card p { font-size: 0.9rem; color: #555; font-weight: 600; line-height: 1.5; }
+    .mode-tag {
+      display: inline-block;
+      margin-top: 10px;
+      background: var(--dark);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 800;
+      padding: 4px 12px;
+      border-radius: 999px;
+    }
+
+    /* ─── CONTACT ─── */
+    .contact-section {
+      padding: 100px 24px;
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .contact-form {
+      background: #fff;
+      border: 3px solid var(--dark);
+      border-radius: 28px;
+      padding: 48px 40px;
+      box-shadow: 6px 6px 0 var(--dark);
+      text-align: left;
+    }
+    .contact-form label {
+      display: block;
+      font-weight: 800;
+      font-size: 0.9rem;
+      margin-bottom: 6px;
+      margin-top: 20px;
+    }
+    .contact-form label:first-of-type { margin-top: 0; }
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border: 2px solid var(--dark);
+      border-radius: 12px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      background: var(--light);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+    }
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      border-color: var(--orange);
+      box-shadow: 0 0 0 3px #FF6B3533;
+    }
+    .contact-form textarea { min-height: 140px; resize: vertical; }
+    .contact-btn {
+      display: inline-block;
+      margin-top: 24px;
+      background: linear-gradient(135deg, var(--orange), var(--pink));
+      color: #fff;
+      font-weight: 800;
+      font-size: 1rem;
+      padding: 14px 36px;
+      border-radius: 999px;
+      border: 3px solid var(--dark);
+      box-shadow: 4px 4px 0 var(--dark);
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s;
+      width: 100%;
+      text-align: center;
+    }
+    .contact-btn:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 6px 0 var(--dark);
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--dark);
+      color: #aaa;
+      text-align: center;
+      padding: 40px 24px;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+    footer a {
+      color: var(--yellow);
+      text-decoration: none;
+      font-weight: 700;
+      margin: 0 12px;
+      transition: color 0.2s;
+    }
+    footer a:hover { color: var(--orange); }
+    .footer-links { margin-bottom: 16px; }
+    .footer-logo {
+      font-size: 1.4rem;
+      font-weight: 900;
+      color: #fff;
+      margin-bottom: 16px;
+    }
+
+    /* ─── DIVIDER WAVE ─── */
+    .wave { display: block; width: 100%; line-height: 0; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 600px) {
+      nav ul { display: none; }
+      nav { padding: 16px 20px; }
+      .contact-form { padding: 32px 20px; }
+      .screen-mock { width: 150px; height: 300px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">Qui lèche ? 👅</div>
+    <ul>
+      <li><a href="#comment">Comment jouer</a></li>
+      <li><a href="#modes">Modes</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-badge">🎮 Bientôt disponible</div>
+    <h1>Le jeu qui<br/><span>met les corps</span><br/>en question</h1>
+    <p class="hero-sub">
+      Photographiez une partie de votre corps, mélangez tout ça, et devinez à qui appartient chaque photo — y compris la vôtre.
+    </p>
+    <a href="#contact" class="hero-cta">Être notifié à la sortie 🚀</a>
+    <div class="hero-emoji-strip">
+      <span class="emoji-float">👅</span>
+      <span class="emoji-float">👁️</span>
+      <span class="emoji-float">😁</span>
+      <span class="emoji-float">👂</span>
+      <span class="emoji-float">👃</span>
+      <span class="emoji-float">✋</span>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="section" id="comment">
+    <h2 class="section-title">Comment ça marche ? 🤔</h2>
+    <p class="section-sub">Un seul téléphone, des fous rires garantis.</p>
+    <div class="steps">
+      <div class="step-card">
+        <div class="step-num">📸</div>
+        <h3>Chacun photographie</h3>
+        <p>À tour de rôle, chaque joueur photographie la partie du corps choisie — langue, œil, sourire, oreille…</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">🔀</div>
+        <h3>On mélange tout</h3>
+        <p>Les photos sont mélangées et affichées une par une sur l'écran, face aux autres joueurs.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">🧠</div>
+        <h3>Qui c'est ?</h3>
+        <p>Chacun vote avant le chrono. Vous serez surpris de ne pas reconnaître vos propres doigts !</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">🏆</div>
+        <h3>Scores & révélation</h3>
+        <p>La révélation se fait avec annonce vocale. Classement final, bonne humeur, et revanche.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREENSHOTS -->
+  <section class="screenshots-section" id="screenshots">
+    <h2 class="section-title">À quoi ça ressemble ? 👀</h2>
+    <p class="section-sub">Beau, rapide, et conçu pour les repas en famille ou entre amis.</p>
+    <div class="screens-grid">
+      <div class="screen-mock">
+        <div class="screen-label">👅</div>
+        <div class="screen-text">Choix de la catégorie</div>
+      </div>
+      <div class="screen-mock">
+        <div class="screen-label">📸</div>
+        <div class="screen-text">Caméra guidée</div>
+      </div>
+      <div class="screen-mock">
+        <div class="screen-label">⏱️</div>
+        <div class="screen-text">Devinette avec timer</div>
+      </div>
+      <div class="screen-mock">
+        <div class="screen-label">🏆</div>
+        <div class="screen-text">Classement final</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODES -->
+  <section class="modes-section" id="modes">
+    <div style="max-width:1100px; margin:0 auto;">
+      <h2 class="section-title">Choisissez votre rythme ⏱️</h2>
+      <p class="section-sub" style="color:#333;">Du mode détente au mode compétition totale.</p>
+      <div class="modes-grid">
+        <div class="mode-card">
+          <div class="mode-emoji">😌</div>
+          <h3>Débutant</h3>
+          <p>8 secondes par photo pour bien réfléchir. Idéal pour les premiers repas et les grands-parents.</p>
+          <span class="mode-tag">8 secondes</span>
+        </div>
+        <div class="mode-card">
+          <div class="mode-emoji">😏</div>
+          <h3>Intermédiaire</h3>
+          <p>5 secondes, ça commence à chauffer. Il va falloir se concentrer entre les fous rires.</p>
+          <span class="mode-tag">5 secondes</span>
+        </div>
+        <div class="mode-card">
+          <div class="mode-emoji">🔥</div>
+          <h3>Pro de la lèche</h3>
+          <p>2 secondes seulement, et les bonnes réponses valent double. Pour les vrais warriors.</p>
+          <span class="mode-tag">2 sec · ×2 pts</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact-section" id="contact">
+    <h2 class="section-title">Restez dans la boucle 📬</h2>
+    <p class="section-sub">Une question, une suggestion, ou juste envie d'être notifié à la sortie&nbsp;?</p>
+    <form class="contact-form" onsubmit="handleSubmit(event)">
+      <label for="name">Votre prénom</label>
+      <input type="text" id="name" placeholder="Marie, Théo, Papy Roger…" required />
+
+      <label for="email">Votre email</label>
+      <input type="email" id="email" placeholder="contact@exemple.fr" required />
+
+      <label for="message">Message (optionnel)</label>
+      <textarea id="message" placeholder="Hâte de jouer avec ma famille ! / J'ai une idée de catégorie…"></textarea>
+
+      <button type="submit" class="contact-btn">Envoyer 🚀</button>
+    </form>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">Qui lèche ? 👅</div>
+    <div class="footer-links">
+      <a href="cgu.html">Conditions Générales d'Utilisation</a>
+      <a href="politique-confidentialite.html">Politique de confidentialité</a>
+    </div>
+    <p>© 2026 Qui lèche ? — Fait avec ❤️ pour les repas en famille.</p>
+  </footer>
+
+  <script>
+    function handleSubmit(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('.contact-btn');
+      btn.textContent = '✅ Message envoyé !';
+      btn.style.background = '#22c55e';
+      btn.disabled = true;
+      setTimeout(() => {
+        btn.textContent = 'Envoyer 🚀';
+        btn.style.background = '';
+        btn.disabled = false;
+        e.target.reset();
+      }, 3000);
+    }
+  </script>
+
+</body>
+</html>

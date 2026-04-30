@@ -1,0 +1,16 @@
+# Fichiers du projet non destinés au site web
+*.docx
+*.pages
+*.pdf
+*.heic
+*.HEIC
+*.jpeg
+*.jpg
+*.png
+*.zip
+*.DS_Store
+
+# Garder uniquement les fichiers du site
+!index.html
+!cgu.html
+!politique-confidentialite.html

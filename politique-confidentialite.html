@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Politique de confidentialité — Qui lèche ?</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --yellow: #FFD93D;
+      --orange: #FF6B35;
+      --pink:   #FF4D9D;
+      --purple: #7C3AED;
+      --light:  #FFF8F0;
+      --dark:   #1A1A2E;
+    }
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--light);
+      color: var(--dark);
+    }
+
+    header {
+      background: var(--dark);
+      padding: 20px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .header-logo {
+      font-size: 1.3rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--yellow), var(--orange));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-decoration: none;
+    }
+    .header-back {
+      color: #aaa;
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .header-back:hover { color: var(--yellow); }
+
+    .page-hero {
+      background: linear-gradient(135deg, var(--purple), var(--pink));
+      padding: 60px 24px 80px;
+      text-align: center;
+    }
+    .page-hero h1 {
+      color: #fff;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+    .page-hero p {
+      color: rgba(255,255,255,0.8);
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    main {
+      max-width: 800px;
+      margin: -40px auto 80px;
+      padding: 0 24px;
+    }
+    .card {
+      background: #fff;
+      border: 3px solid var(--dark);
+      border-radius: 24px;
+      padding: 48px 48px;
+      box-shadow: 6px 6px 0 var(--dark);
+    }
+
+    .card h2 {
+      font-size: 1.2rem;
+      font-weight: 900;
+      margin-top: 36px;
+      margin-bottom: 10px;
+      color: var(--purple);
+    }
+    .card h2:first-child { margin-top: 0; }
+
+    .card p, .card li {
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: #333;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .card ul {
+      padding-left: 20px;
+      margin-bottom: 8px;
+    }
+    .card a {
+      color: var(--purple);
+      font-weight: 700;
+    }
+
+    .update-badge {
+      display: inline-block;
+      background: var(--yellow);
+      color: var(--dark);
+      font-size: 0.8rem;
+      font-weight: 800;
+      padding: 4px 14px;
+      border-radius: 999px;
+      border: 2px solid var(--dark);
+      margin-bottom: 28px;
+    }
+
+    .highlight-box {
+      background: #EDE9FF;
+      border: 2px solid var(--purple);
+      border-radius: 16px;
+      padding: 20px 24px;
+      margin: 20px 0;
+    }
+    .highlight-box p {
+      color: var(--purple);
+      font-weight: 700;
+      margin: 0;
+    }
+
+    footer {
+      background: var(--dark);
+      color: #aaa;
+      text-align: center;
+      padding: 32px 24px;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+    footer a {
+      color: var(--yellow);
+      text-decoration: none;
+      font-weight: 700;
+      margin: 0 10px;
+    }
+
+    @media (max-width: 600px) {
+      .card { padding: 32px 20px; }
+      header { padding: 16px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="index.html" class="header-logo">Qui lèche ? 👅</a>
+    <a href="index.html" class="header-back">← Retour à l'accueil</a>
+  </header>
+
+  <div class="page-hero">
+    <h1>🔒 Politique de confidentialité</h1>
+    <p>Qui lèche ? — Application mobile</p>
+  </div>
+
+  <main>
+    <div class="card">
+      <span class="update-badge">Mise à jour : 30 avril 2026</span>
+
+      <div class="highlight-box">
+        <p>🔒 En résumé : Qui lèche ? ne collecte pas vos photos, ne les stocke pas sur des serveurs, et ne les partage avec personne. Tout reste sur votre téléphone.</p>
+      </div>
+
+      <h2>1. Responsable du traitement</h2>
+      <p>
+        La présente politique de confidentialité décrit la manière dont l'application mobile <strong>Qui lèche ?</strong>
+        collecte, utilise et protège vos données personnelles. Pour toute question relative à vos données, vous pouvez
+        nous contacter via le formulaire sur <a href="index.html#contact">la page d'accueil</a>.
+      </p>
+
+      <h2>2. Données collectées</h2>
+      <p>
+        L'Application a été conçue avec une approche <em>privacy-first</em>. Voici ce que nous collectons ou non :
+      </p>
+      <ul>
+        <li><strong>Photos prises pendant le jeu :</strong> traitées et stockées localement sur votre appareil uniquement. Elles sont effacées automatiquement à la fin de chaque partie et ne transitent jamais par nos serveurs.</li>
+        <li><strong>Données de contact (formulaire) :</strong> si vous nous contactez via le formulaire de la page d'accueil, nous collectons votre prénom et votre adresse email à des fins de réponse uniquement.</li>
+        <li><strong>Données d'utilisation anonymes :</strong> nous pouvons collecter des données agrégées et anonymisées sur l'utilisation de l'Application (nombre de parties, modes utilisés) afin d'améliorer le produit. Ces données ne permettent pas de vous identifier.</li>
+      </ul>
+
+      <h2>3. Données que nous ne collectons pas</h2>
+      <p>Nous ne collectons pas :</p>
+      <ul>
+        <li>Vos photos ou images prises dans le cadre du jeu</li>
+        <li>Vos données de localisation</li>
+        <li>Votre liste de contacts</li>
+        <li>Votre identifiant publicitaire</li>
+        <li>Toute donnée permettant de vous identifier sans votre consentement explicite</li>
+      </ul>
+
+      <h2>4. Utilisation de la caméra</h2>
+      <p>
+        L'Application demande l'accès à votre appareil photo uniquement pour permettre la prise de photos
+        dans le cadre du jeu. Cet accès peut être révoqué à tout moment dans les paramètres de votre appareil.
+        Sans cet accès, certaines fonctionnalités de l'Application seront indisponibles.
+      </p>
+
+      <h2>5. Finalités du traitement</h2>
+      <p>Les données que nous collectons sont utilisées exclusivement pour :</p>
+      <ul>
+        <li>Faire fonctionner l'Application et ses fonctionnalités de jeu</li>
+        <li>Répondre à vos messages via le formulaire de contact</li>
+        <li>Améliorer l'Application sur la base de données anonymes agrégées</li>
+      </ul>
+
+      <h2>6. Partage des données</h2>
+      <p>
+        Nous ne vendons, ne louons et ne partageons vos données personnelles avec aucun tiers à des fins
+        commerciales ou publicitaires. Aucun réseau publicitaire n'est intégré à l'Application.
+      </p>
+      <p>
+        Des données peuvent être partagées avec des prestataires techniques essentiels au fonctionnement
+        du service (hébergement, plateforme de distribution), dans la seule limite de ce qui est nécessaire
+        et encadrés par des garanties contractuelles appropriées.
+      </p>
+
+      <h2>7. Durée de conservation</h2>
+      <ul>
+        <li><strong>Photos de jeu :</strong> supprimées à la fin de chaque session de jeu.</li>
+        <li><strong>Données de contact :</strong> conservées le temps nécessaire à la gestion de votre demande, puis supprimées.</li>
+        <li><strong>Données anonymes :</strong> conservées sans limitation de durée sous forme agrégée.</li>
+      </ul>
+
+      <h2>8. Vos droits (RGPD)</h2>
+      <p>
+        Conformément au Règlement Général sur la Protection des Données (RGPD), vous disposez des droits suivants
+        concernant vos données personnelles :
+      </p>
+      <ul>
+        <li><strong>Droit d'accès :</strong> obtenir une copie des données vous concernant.</li>
+        <li><strong>Droit de rectification :</strong> corriger des données inexactes.</li>
+        <li><strong>Droit à l'effacement :</strong> demander la suppression de vos données.</li>
+        <li><strong>Droit à la portabilité :</strong> recevoir vos données dans un format structuré.</li>
+        <li><strong>Droit d'opposition :</strong> vous opposer à certains traitements.</li>
+      </ul>
+      <p>
+        Pour exercer ces droits, contactez-nous via <a href="index.html#contact">le formulaire de contact</a>.
+        Vous pouvez également introduire une réclamation auprès de la CNIL (<a href="https://www.cnil.fr" target="_blank">www.cnil.fr</a>).
+      </p>
+
+      <h2>9. Sécurité</h2>
+      <p>
+        Nous mettons en œuvre les mesures techniques et organisationnelles appropriées pour protéger vos données
+        contre tout accès non autorisé, perte, destruction ou altération. Les photos de jeu ne quittant jamais
+        votre appareil, elles bénéficient de la protection native de votre système d'exploitation.
+      </p>
+
+      <h2>10. Mineurs</h2>
+      <p>
+        L'Application est destinée aux personnes de 13 ans et plus. Si vous avez moins de 13 ans, vous ne devez
+        pas utiliser cette Application sans le consentement de vos parents ou tuteurs légaux.
+      </p>
+
+      <h2>11. Modifications de la politique</h2>
+      <p>
+        Nous nous réservons le droit de modifier la présente politique à tout moment. Toute modification sera
+        signalée dans l'Application. L'utilisation continue de l'Application après modification vaut acceptation
+        de la nouvelle politique.
+      </p>
+
+      <h2>12. Contact</h2>
+      <p>
+        Pour toute question relative à cette politique de confidentialité ou à vos données personnelles,
+        contactez-nous via <a href="index.html#contact">le formulaire de contact</a>.
+      </p>
+    </div>
+  </main>
+
+  <footer>
+    <a href="index.html">Accueil</a>
+    <a href="cgu.html">CGU</a>
+    <br/><br/>
+    © 2026 Qui lèche ? — Tous droits réservés.
+  </footer>
+
+</body>
+</html>
